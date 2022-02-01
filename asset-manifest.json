@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/wearables-nfts/static/js/main.cefbd871.chunk.js",
-    "main.js.map": "/wearables-nfts/static/js/main.cefbd871.chunk.js.map",
+    "main.js": "/wearables-nfts/static/js/main.8fc22295.chunk.js",
+    "main.js.map": "/wearables-nfts/static/js/main.8fc22295.chunk.js.map",
     "runtime-main.js": "/wearables-nfts/static/js/runtime-main.e2df8b7c.js",
     "runtime-main.js.map": "/wearables-nfts/static/js/runtime-main.e2df8b7c.js.map",
     "static/css/2.9f4780f4.chunk.css": "/wearables-nfts/static/css/2.9f4780f4.chunk.css",
     "static/js/2.d4341efb.chunk.js": "/wearables-nfts/static/js/2.d4341efb.chunk.js",
     "static/js/2.d4341efb.chunk.js.map": "/wearables-nfts/static/js/2.d4341efb.chunk.js.map",
     "index.html": "/wearables-nfts/index.html",
-    "precache-manifest.d91fd915f15c163c00aa82532e28ffcb.js": "/wearables-nfts/precache-manifest.d91fd915f15c163c00aa82532e28ffcb.js",
+    "precache-manifest.e2952919361118cb7c506254d6fa9744.js": "/wearables-nfts/precache-manifest.e2952919361118cb7c506254d6fa9744.js",
     "service-worker.js": "/wearables-nfts/service-worker.js",
     "static/css/2.9f4780f4.chunk.css.map": "/wearables-nfts/static/css/2.9f4780f4.chunk.css.map",
     "static/js/2.d4341efb.chunk.js.LICENSE.txt": "/wearables-nfts/static/js/2.d4341efb.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.e2df8b7c.js",
     "static/css/2.9f4780f4.chunk.css",
     "static/js/2.d4341efb.chunk.js",
-    "static/js/main.cefbd871.chunk.js"
+    "static/js/main.8fc22295.chunk.js"
   ]
 }
