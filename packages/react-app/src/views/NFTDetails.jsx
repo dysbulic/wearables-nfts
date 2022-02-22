@@ -15,14 +15,32 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Center, Environment } from '@react-three/drei'
 import { Helmet } from 'react-helmet'
 
-const TOKEN = gql(`
-  query GetToken($id: String!) {
-    token(id: $id) {
-      identifier
-      URI
+// const TOKEN = gql(`
+//   query GetToken($id: String!) {
+//     token(id: $id) {
+//       identifier
+//       URI
+//     }
+//   }
+// `)
+
+const TOKEN = gql`
+  query GetToken($id: String!, $contract: String!) {
+    nfts(where: {
+      tokenID: $id
+      contract: $contract
+    }) {
+      tokenID
+      tokenURI
+      ownership {
+        owner
+        quantity
+      }
+      creatorName
+      creatorAddress
     }
   }
-`)
+`
 
 export default (props) => {
   const [metadata, setMetadata] = useState()
@@ -64,23 +82,28 @@ export default (props) => {
   }
 
   const Model = ({ source }) => {
-    if(!wearables?.['model/gltf-binary']) return null
+    source = source ?? wearables?.['model/gltf-binary']
+    if(!source) throw new Error('¡No source specified for Model!')
     return (
       <Suspense fallback={null}>
-        <Scene source={httpURL(wearables['model/gltf-binary'])}/>
+        <Scene {...{ source }}/>
       </Suspense>
     )
   }
 
   let id = params.id?.toLowerCase()
-  if(!id.includes('-')) {
-    if(!id.startsWith('0x')) id = `0x${id}`
-    id = `${contractAddress.toLowerCase()}-${id}`
-  }
+  // if(!id.includes('-')) {
+  //   if(!id.startsWith('0x')) id = `0x${id}`
+  //   id = `${contractAddress.toLowerCase()}-${id}`
+  // }
+  contractAddress = contractAddress.toLowerCase()
 
   let { loading, error: qError, data } = useQuery(
-    TOKEN, { variables: { id } },
+    TOKEN, { variables: { id, contract: contractAddress } },
   )
+
+  console.debug('NFTDetails', { loading, qError, data })
+
   const [error, setError] = useState(qError)
 
   useEffect(() => {

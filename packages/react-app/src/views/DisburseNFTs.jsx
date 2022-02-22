@@ -12,19 +12,37 @@ import Distribute from '../components/DistributeModal'
 import { httpURL } from '../helpers'
 import contractAddress from '../contracts/WearablesNFTs.address'
 
-const TOKEN = gql(`
-  query GetToken($id: String!) {
-    token(id: $id) {
-      identifier
-      totalSupply
-      balances {
-        account { id }
-        value
+// const TOKEN = gql(`
+//   query GetToken($id: String!) {
+//     token(id: $id) {
+//       identifier
+//       totalSupply
+//       balances {
+//         account { id }
+//         value
+//       }
+//       URI
+//     }
+//   }
+// `)
+
+const TOKEN = gql`
+  query GetToken($id: String!, $contract: String!) {
+    nfts(where: {
+      tokenID: $id
+      contract: $contract
+    }) {
+      tokenID
+      tokenURI
+      ownership {
+        owner
+        quantity
       }
-      URI
+      creatorName
+      creatorAddress
     }
   }
-`)
+`
 
 export default ({
   ensProvider, address, contract, desiredNetwork,
@@ -44,14 +62,18 @@ export default ({
   const threeCol = useBreakpointValue([false, true])
 
   let id = params.id?.toLowerCase()
-  if(!id.includes('-')) {
-    if(!id.startsWith('0x')) id = `0x${id}`
-    id = `${contractAddress.toLowerCase()}-${id}`
-  }
+  // if(!id.includes('-')) {
+  //   if(!id.startsWith('0x')) id = `0x${id}`
+  //   id = `${contractAddress.toLowerCase()}-${id}`
+  // }
+  contractAddress = contractAddress.toLowerCase()
 
   let { loading, error, data } = useQuery(
-    TOKEN, { variables: { id } },
+    TOKEN, { variables: { id, contract: contractAddress } },
   )
+
+  console.info({ loading, error, data })
+
   const config = () => {
     if(desiredNetwork) {
       toast({

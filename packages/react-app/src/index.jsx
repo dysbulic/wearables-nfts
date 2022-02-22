@@ -7,14 +7,10 @@ import {
   ChakraProvider, extendTheme, ColorModeScript,
 } from '@chakra-ui/react'
 import App from './App'
-
-const subgraphUri = (
-  'https://api.thegraph.com/subgraphs/name/leon-do/polygon-erc721-erc1155'
-  || 'https://api.thegraph.com/subgraphs/name/0xorg/eip1155-subgraph-rinkeby'
-)
+import { SUBGRAPH_URI } from './constants'
 
 const client = new ApolloClient({
-  uri: subgraphUri,
+  uri: SUBGRAPH_URI,
   cache: new InMemoryCache(),
 })
 

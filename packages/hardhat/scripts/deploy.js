@@ -75,18 +75,26 @@ const fileTemplates = {
 
 const deploy = async (contract, _args = [], overrides = {}, libraries = {}) => {
   const files = Object.fromEntries(
-    Object.entries(fileTemplates), (([name, template]) => [
-      name,
-      template.replace(/\{contract\}/g, contract)
-    ])
+    Object.entries(fileTemplates).map(([name, template]) => {
+      console.info({ name, template, r: template.replace(/\{contract\}/g, contract) })
+      return [
+        name,
+        template.replace(/\{contract\}/g, contract)
+      ]
+    })
   )
 
   console.log(` 🛰  Deploying: ${contract}`)
+
+  return
 
   const args = _args ?? []
   const artifacts = await ethers.getContractFactory(
     contract, { libraries }
   )
+
+  console.debug({ artifacts })
+  
   const deployed = await artifacts.deploy(...args, overrides)
 
   console.debug({ deployed })
@@ -132,7 +140,9 @@ const deploy = async (contract, _args = [], overrides = {}, libraries = {}) => {
     fs.writeFileSync(files.args, encoded.slice(2))
   }
 
-  const verification = tenderlyVerify({ contract, address })
+  const verification = (
+    await tenderlyVerify({ contract, address })
+  )
   console.debug({ verification })
 
   return deployed
@@ -187,7 +197,7 @@ const tenderlyVerify = async ({
   } else {
     console.log(
       ' 📁 Attempting tenderly verification of'
-      + `${chalk.blue(name)} on`
+      + ` ${chalk.blue(name)} on`
       + ` ${chalk.green(network)}.`
     )
 

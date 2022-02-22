@@ -10,6 +10,7 @@ export default (props) => {
   if(params.id) {
     return <UpdateNFT {...props}/>
   }
+  
   return (
     <>
       <Heading align="center" m={8}>

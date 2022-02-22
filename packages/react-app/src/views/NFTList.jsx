@@ -10,39 +10,65 @@ import demarkdown from 'remove-markdown'
 import registryAddress from '../contracts/WearablesNFTs.address'
 import { httpURL } from '../helpers'
 
-const TOKENS = gql(`
-  query GetTokens {
-    tokenRegistry(id: "${registryAddress.toLowerCase()}") {
-      id
-      tokens {
-        id
-        URI
-        totalSupply
+// const TOKENS = gql(`
+//   query GetTokens {
+//     tokenRegistry(id: "${registryAddress.toLowerCase()}") {
+//       id
+//       tokens {
+//         id
+//         URI
+//         totalSupply
+//       }
+//     }
+//   }
+// `)
+
+const TOKENS = gql`
+  query GetTokens($contract: String!) {
+    nftContracts(where: { id: $contract }) {
+      name
+      symbol
+      nfts {
+        tokenID
+        tokenURI
+        ownership {
+          owner
+          quantity
+        }
+        creatorName
+        creatorAddress
       }
     }
   }
-`)
+`
 
 export default ({ action = null }) => {
-  const { loading, error, data } = useQuery(TOKENS)
+  const contract = registryAddress.toLowerCase()
+  const { loading, error, data } = (
+    useQuery(TOKENS, { variables: { contract } })
+  )
+
+  console.info({ loading, error, data })
+
   const [tokens, setTokens] = useState(null)
   const { colorMode } = useColorMode()
   const history = useHistory()
   const load = useCallback(async () => {
     if(data) {
-      const tokenData = data?.tokenRegistry?.tokens
+      const tokenData = data.nftContracts?.nfts
       if(!tokenData) {
         return setTokens([])
       }
 
       const tokens = tokenData.map((token) => ({
         loading: true,
-        id: token.id,
-        supply: token.totalSupply,
-        metadata: token.URI,
+        id: token.tokenID,
+        // supply: token.totalSupply,
+        metadata: token.tokenURI,
       }))
       setTokens(tokens)
-      const uris = [...new Set([...tokens.map(t => t.metadata)])]
+
+      const uris = [...new Set([...tokens.map(({ metadata: m })=> m)])]
       await Promise.all(uris.map(async (uri) => {
         const response = await fetch(httpURL(uri))
         if(response.ok) {
@@ -71,10 +97,12 @@ export default ({ action = null }) => {
 
   if(error) {
     return (
-      <Container mt={10}><Alert status="error">
-        <AlertIcon />
-        {error}
-      </Alert></Container>
+      <Container mt={10}>
+        <Alert status="error">
+          <AlertIcon />
+          {error}
+        </Alert>
+      </Container>
     )
   }
 
