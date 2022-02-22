@@ -1,7 +1,7 @@
 pragma solidity >=0.8.0 <0.9.0;
-//SPDX-License-Identifier: MIT
+//SPDX-License-Identifier: CC0
 
-import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
+// import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
@@ -64,19 +64,20 @@ abstract contract ReentrancyGuard {
     }
 }
 
-contract WearablesNFTs is ERC1155, AccessControlEnumerable, ReentrancyGuard {
+// contract WearablesNFTs is ERC1155, AccessControlEnumerable, ReentrancyGuard {
+contract WearablesNFTs is ERC1155, ReentrancyGuard {
   using Counters for Counters.Counter;
 
   mapping (uint256 => string) private _uris;
   Counters.Counter private _tokenCount;
   string public name = "MetaFactory Wearables";
-  string public symbol = "MF";
+  string public symbol = unicode"MF🎽s";
 
-  bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-  bytes32 public constant META_MANAGER_ROLE = keccak256("META_MANAGER_ROLE");
+  // bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+  // bytes32 public constant META_MANAGER_ROLE = keccak256("META_MANAGER_ROLE");
 
   constructor() ERC1155("Single Metadata URI Is Not Used") {
-    _setupRole(DEFAULT_ADMIN_ROLE, 0x615b044B6Ccb048532bcF99AAdf619d7fdD2Aa01);
+    // _setupRole(DEFAULT_ADMIN_ROLE, 0x615b044B6Ccb048532bcF99AAdf619d7fdD2Aa01);
   }
 
   function mint(
@@ -86,7 +87,7 @@ contract WearablesNFTs is ERC1155, AccessControlEnumerable, ReentrancyGuard {
     bytes memory data
   ) public virtual
   nonReentrant
-  onlyRole(MINTER_ROLE)
+  // onlyRole(MINTER_ROLE)
   {
     _tokenCount.increment();
     uint256 id = _tokenCount.current();
@@ -101,7 +102,7 @@ contract WearablesNFTs is ERC1155, AccessControlEnumerable, ReentrancyGuard {
   }
 
   function setURI(string memory newuri, uint256 tokenId) public virtual
-  onlyRole(META_MANAGER_ROLE)
+  // onlyRole(META_MANAGER_ROLE)
   {
     _uris[tokenId] = newuri;
     emit URI(newuri, tokenId);
@@ -126,10 +127,11 @@ contract WearablesNFTs is ERC1155, AccessControlEnumerable, ReentrancyGuard {
     }
   }
 
-  function supportsInterface(bytes4 interfaceId) public view override(ERC1155, AccessControlEnumerable) returns (bool) {
+  // function supportsInterface(bytes4 interfaceId) public view override(ERC1155, AccessControlEnumerable) returns (bool) {
+  function supportsInterface(bytes4 interfaceId) public view override(ERC1155) returns (bool) {
     return (
       ERC1155.supportsInterface(interfaceId)
-      || AccessControlEnumerable.supportsInterface(interfaceId)
+      // || AccessControlEnumerable.supportsInterface(interfaceId)
     );
   }
 }

@@ -22,9 +22,9 @@ import ViewOrList from './views/ViewOrList'
 import { capitalize } from './helpers'
 import ManageRoles from './views/ManageRoles'
 
-const targetNetwork = NETWORKS['rinkeby']
+const targetNetwork = NETWORKS.matic
 const mainnetInfura = (
-  new StaticJsonRpcProvider(`https://mainnet.infura.io/v3/${INFURA_ID}`)
+  new StaticJsonRpcProvider(NETWORKS.mainnet.rpcUrl)
 )
 const mainnetProvider = mainnetInfura
 
@@ -52,7 +52,7 @@ const web3Modal = new Web3Modal({
 export default () => {
   const [injectedProvider, setInjectedProvider] = useState()
   const address = useUserAddress(injectedProvider)
-  const ensName = useLookupAddress(mainnetProvider, address)
+  const ensName = useLookupAddress({ provider: mainnetProvider, address })
   const writeContracts = useContractLoader(injectedProvider)
   const [desiredNetwork, setDesiredNetwork] = (
     useState(targetNetwork.name)

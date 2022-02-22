@@ -10,7 +10,7 @@ import demarkdown from 'remove-markdown'
 import registryAddress from '../contracts/WearablesNFTs.address'
 import { httpURL } from '../helpers'
 
-const TOKENS = gql(`
+const RINKEBY_TOKENS = gql(`
   query GetTokens {
     tokenRegistry(id: "${registryAddress.toLowerCase()}") {
       id
@@ -23,8 +23,21 @@ const TOKENS = gql(`
   }
 `)
 
+const TOKENS = gql(`
+  query ERC1155Token {
+    tokenRegistry(id: "${registryAddress.toLowerCase()}") {
+      id
+      tokens {
+        id
+        URI
+        totalSupply
+      }
+    }
+  }
+`)
+
 export default ({ action = null }) => {
-  const { loading, error, data } = useQuery(TOKENS)
+  const { loading, error, data } = {} // useQuery(TOKENS)
   const [tokens, setTokens] = useState(null)
   const { colorMode } = useColorMode()
   const history = useHistory()

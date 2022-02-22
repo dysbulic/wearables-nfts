@@ -9,7 +9,8 @@ import {
 import App from './App'
 
 const subgraphUri = (
-  'https://api.thegraph.com/subgraphs/name/0xorg/eip1155-subgraph-rinkeby'
+  'https://api.thegraph.com/subgraphs/name/leon-do/polygon-erc721-erc1155'
+  || 'https://api.thegraph.com/subgraphs/name/0xorg/eip1155-subgraph-rinkeby'
 )
 
 const client = new ApolloClient({

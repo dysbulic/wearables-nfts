@@ -1,21 +1,9 @@
 {
-  "name": "nft-wearable-app",
+  "name": "wearables-nfts-app",
   "description": "NFTs encapsulating virtual wearable analogues for physical products.",
-  "version": "0.3.0",
-  "homepage": "https://dysbulic.github.io/nft-wearable/",
-  "license": "MIT",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "version": "0.4.0",
+  "homepage": "https://dysbulic.github.io/wearables-nfts/",
+  "license": "CC0",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "@apollo/client": "^3.3.19",
@@ -114,5 +102,17 @@
     "theme": "npx gulp less",
     "watch": "node ./scripts/watch.js",
     "deploy": "gh-pages -d build/"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
