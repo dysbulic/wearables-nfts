@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.js": "/wearables-nfts/static/js/main.8fc22295.chunk.js",
-    "main.js.map": "/wearables-nfts/static/js/main.8fc22295.chunk.js.map",
-    "runtime-main.js": "/wearables-nfts/static/js/runtime-main.e2df8b7c.js",
-    "runtime-main.js.map": "/wearables-nfts/static/js/runtime-main.e2df8b7c.js.map",
+    "main.js": "/wearables-nfts/static/js/main.af28767e.chunk.js",
+    "main.js.map": "/wearables-nfts/static/js/main.af28767e.chunk.js.map",
+    "runtime-main.js": "/wearables-nfts/static/js/runtime-main.7e291ec9.js",
+    "runtime-main.js.map": "/wearables-nfts/static/js/runtime-main.7e291ec9.js.map",
     "static/css/2.9f4780f4.chunk.css": "/wearables-nfts/static/css/2.9f4780f4.chunk.css",
-    "static/js/2.d4341efb.chunk.js": "/wearables-nfts/static/js/2.d4341efb.chunk.js",
-    "static/js/2.d4341efb.chunk.js.map": "/wearables-nfts/static/js/2.d4341efb.chunk.js.map",
+    "static/js/2.06729e1c.chunk.js": "/wearables-nfts/static/js/2.06729e1c.chunk.js",
+    "static/js/2.06729e1c.chunk.js.map": "/wearables-nfts/static/js/2.06729e1c.chunk.js.map",
     "index.html": "/wearables-nfts/index.html",
-    "precache-manifest.e2952919361118cb7c506254d6fa9744.js": "/wearables-nfts/precache-manifest.e2952919361118cb7c506254d6fa9744.js",
+    "precache-manifest.83d791e2d298cf4bb84ef29588ec5bff.js": "/wearables-nfts/precache-manifest.83d791e2d298cf4bb84ef29588ec5bff.js",
     "service-worker.js": "/wearables-nfts/service-worker.js",
     "static/css/2.9f4780f4.chunk.css.map": "/wearables-nfts/static/css/2.9f4780f4.chunk.css.map",
-    "static/js/2.d4341efb.chunk.js.LICENSE.txt": "/wearables-nfts/static/js/2.d4341efb.chunk.js.LICENSE.txt",
+    "static/js/2.06729e1c.chunk.js.LICENSE.txt": "/wearables-nfts/static/js/2.06729e1c.chunk.js.LICENSE.txt",
     "static/media/600.css": "/wearables-nfts/static/media/crimson-text-latin-600-normal.f1f268fa.woff2",
     "static/media/ethereum.svg": "/wearables-nfts/static/media/ethereum.ec81052f.svg",
     "static/media/logo.svg": "/wearables-nfts/static/media/logo.25a43f77.svg",
     "static/media/polygon.svg": "/wearables-nfts/static/media/polygon.a146b1bc.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e2df8b7c.js",
+    "static/js/runtime-main.7e291ec9.js",
     "static/css/2.9f4780f4.chunk.css",
-    "static/js/2.d4341efb.chunk.js",
-    "static/js/main.8fc22295.chunk.js"
+    "static/js/2.06729e1c.chunk.js",
+    "static/js/main.af28767e.chunk.js"
   ]
 }
