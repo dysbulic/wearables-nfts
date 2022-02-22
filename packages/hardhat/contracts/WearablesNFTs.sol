@@ -2,8 +2,8 @@ pragma solidity >=0.8.0 <0.9.0;
 //SPDX-License-Identifier: CC0
 
 // import "@openzeppelin/contracts/access/AccessControlEnumerable.sol";
-import "./Counters.sol";
-import "./ERC1155.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 
 /**
  * @dev Contract module that helps prevent reentrant calls to a function.
